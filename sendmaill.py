@@ -17,3 +17,8 @@ server.pass_(password)
 
 print("邮件数量 ：s个.大小：%.2fmb"%(server.stat()[0],server.stat()[1]/1024/1024))
 
+index = len(mails)
+resp,lines,octets = server.list()
+
+msg = parser().parsestr(mails_content)
+
