@@ -22,3 +22,11 @@ resp,lines,octets = server.list()
 
 msg = parser().parsestr(mails_content)
 
+def decode_str(s):
+    value, charset = decode_header(s)[0]
+    if charset:
+        value = value.decode(charset)
+    return value
+
+print("解析获取的邮件内容如下")
+
