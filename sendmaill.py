@@ -30,3 +30,16 @@ def decode_str(s):
 
 print("解析获取的邮件内容如下")
 
+print()
+
+print(decode_str(msg['Subject']))
+
+part0 = msg.get_payload()[0]
+
+content = part0.get_payload(decode=True)
+
+print(content.decode(part0.get_content_charset()))
+
+server.dele(index)
+
+server.quit()
