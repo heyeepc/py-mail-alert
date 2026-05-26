@@ -20,8 +20,21 @@ class txtmail(object):
         message["To"] = Header(",".join(receiver_list),"utf-8")
         message["Subject"] = Header(subject,"utf-8")
         message.attach(MIMEText(msg_str,"plain","utf-8"))
-
         
+        if attachment:
+            for att in attachment_list:
+                attachment = MIMEBase(open(att,"rb").read(),"base64","utf-8")
+                attachment["Content-Type"] = "application/octet-stream"
+                attachment=att.split("/")[-1]
+
+                filename=os.path.basename(att)
+
+                attachment.add_header("Content-Disposition","attachment",filename=("utf-8","",filename))
+                message.attach(attachment)
+
+
+
+
 
 
 
