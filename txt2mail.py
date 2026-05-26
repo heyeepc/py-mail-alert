@@ -18,6 +18,10 @@ class txtmail(object):
         message = MIMEMultipart()
         message["From"] = self.sender
         message["To"] = Header(",".join(receiver_list),"utf-8")
+        message["Subject"] = Header(subject,"utf-8")
+        message.attach(MIMEText(msg_str,"plain","utf-8"))
+
+        
 
 
 
