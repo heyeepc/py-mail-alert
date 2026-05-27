@@ -32,6 +32,24 @@ class txtmail(object):
                 attachment.add_header("Content-Disposition","attachment",filename=("utf-8","",filename))
                 message.attach(attachment)
 
+        smtpObj = smtplib.SMTP_SSL()
+        smtpObj.connect(self.host, smtplib.SMTP_SSL_PORT)
+        smtpObj.login(self.auth_user, self.auth_password)
+        smtpObj.sendmail(self.sender,receiver_list,message.as_string())
+        smtpObj.quit()
+        print("邮件发送成功")
+
+    def guess_charset(self,filename):
+
+        encoding = None
+        try:
+            raw = open(filename,"rb").read()
+            if raw.startswith(codecs.BOM_UTF8):
+                encoding = "utf-8-sig"
+            else:
+                result = chardet.detect(raw)
+                encoding = chardet.detect(raw)["encoding"]
+
 
 
 
