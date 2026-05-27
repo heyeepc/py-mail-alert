@@ -48,7 +48,11 @@ class txtmail(object):
                 encoding = "utf-8-sig"
             else:
                 result = chardet.detect(raw)
-                encoding = chardet.detect(raw)["encoding"]
+                encoding = result["encoding"]
+
+        except:
+            pass
+        return encoding
 
 
 
