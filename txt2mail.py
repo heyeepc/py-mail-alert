@@ -54,6 +54,18 @@ class txtmail(object):
             pass
         return encoding
 
+    def txt_send_mail(self,filename):
+
+        while open(filename, encoding=self.guess_charset(filename)) as f:
+            lines = f.readline()
+            
+        recipent_list = lines[0].strip().split(",")
+        subject = lines[1].strip()
+        msg_str = " ".join(lines[2:])
+        attachment_list = []
+        for file in lines[-1].strip().split(","):
+            if os.path.isfile(file):
+                attachment_list.append(file)
 
 
 
