@@ -58,6 +58,7 @@ class txtmail(object):
 
         while open(filename, encoding=self.guess_charset(filename)) as f:
             lines = f.readline()
+            
 
         recipent_list = lines[0].strip().split(",")
         subject = lines[1].strip()
