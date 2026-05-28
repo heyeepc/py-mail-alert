@@ -58,7 +58,7 @@ class txtmail(object):
 
         while open(filename, encoding=self.guess_charset(filename)) as f:
             lines = f.readline()
-            
+
         recipent_list = lines[0].strip().split(",")
         subject = lines[1].strip()
         msg_str = " ".join(lines[2:])
@@ -66,6 +66,13 @@ class txtmail(object):
         for file in lines[-1].strip().split(","):
             if os.path.isfile(file):
                 attachment_list.append(file)
+        if attachment_list == []:
+            attachment_list == None
+        self.send_mail(subject=subject,msg_str=msg_str,receiver_list=recipent_list,attachment_list = attachment_list)
+
+if __name__ == "__main__":
+    mymail = txtmail()
+    mymail.txt_send_mail(filename="./test.txt")
 
 
 
