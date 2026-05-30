@@ -4,4 +4,16 @@ from watchdog.events import FileSystemEventHandler
 from txt2mail import txt2mail
 
 class MyHandler(FileSystemEventHandler):
-    
+
+    def __init__(self):
+        FileSystemEventHandler.__init__(self)
+
+    def on_moved(self, event):
+        if event.is_directory:
+            print("directory created:{0}".format(event.src_path))
+        else:
+            print("file created:{0}".format(event.src_path))
+            if event.src_path.endswith(".txt"):
+                time.sleep(1)
+                mail = txtmail()
+                
