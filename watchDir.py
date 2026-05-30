@@ -16,4 +16,10 @@ class MyHandler(FileSystemEventHandler):
             if event.src_path.endswith(".txt"):
                 time.sleep(1)
                 mail = txtmail()
-                
+                try:
+                    mail.txt_send_mail(filename=event.src_path)
+                except:
+                    print("文本文件格式不正确")
+
+    def on_modified(self, event):
+        if event.is_directory:
