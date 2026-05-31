@@ -69,7 +69,7 @@ class TxtMail(object):
 
         encoding = self.guess_charset(filename)
         with open(filename, "r", encoding=encoding) as f:
-            lines = [line.strip() for line in f.readlines() if line.strip()]
+            lines = [line.rstrip('\r\n') for line in f.readlines()]
 
         if len(lines) < 3:
             print("TXT文件格式错误，至少需要包含：接收人、主题、正文")
