@@ -23,3 +23,13 @@ class MyHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         if event.is_directory:
+            print("directory created:{0}".format(event.src_path))
+        else:
+            print("file created:{0}".format(event.src_path))
+            if event.src_path.endswith(".txt"):
+                time.sleep(1)
+                mail = txt2mail()
+                try:
+                    mail.txt_send_mail(filename=event.src_path)
+                except:
+                    print("文本格式不正确")
