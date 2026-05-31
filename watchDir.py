@@ -33,3 +33,12 @@ class MyHandler(FileSystemEventHandler):
                     mail.txt_send_mail(filename=event.src_path)
                 except:
                     print("文本格式不正确")
+
+if __name__ == '__main__':
+    observer = Observer()
+    event_handler = FileSystemEventHandler()
+    dir = "./"
+    observer.schedule(event_handler, dir, False)
+    print(f"当前监控的目录；{dir}")
+    observer.start()
+    observer.join()
